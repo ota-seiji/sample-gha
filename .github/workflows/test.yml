@@ -2,7 +2,11 @@ name: test
 
 on:
   push:
+    branches:
+      - main
   pull_request:
+    types:
+      - closed
 
 jobs:
   test:
@@ -18,5 +22,5 @@ jobs:
       - name: echo github.event.pull_request.auto_merge
         run: echo '${{ github.event.pull_request.auto_merge }}'
 
-      - name: echo github.event
-        run: echo '${{ toJSON(github.event) }}'
+      - name: echo github
+        run: echo '${{ toJSON(github) }}'
