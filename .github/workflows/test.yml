@@ -2,15 +2,7 @@ name: test
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "README.md"
-      - "./github/workflows/test.yml"
   pull_request:
-    paths:
-      - "README.md"
-      - "./github/workflows/test.yml"
 
 jobs:
   test:
