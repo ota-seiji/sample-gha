@@ -7,8 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: echo github
-        run: echo '${{ toJSON(github.event) }}'
-
       - name: echo github.event_name
         run: echo '${{ github.event_name }}'
+
+      - name: echo github.event.type
+        run: echo '${{ github.event.type }}'
+
+      - name: echo github.event.pull_request.auto_merge
+        run: echo '${{ github.event.pull_request.auto_merge }}'
+
