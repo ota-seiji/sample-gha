@@ -1,0 +1,14 @@
+name: test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo github
+        run: echo '${{ toJSON(github) }}'
+
+      - name: echo github.event_name
+        run: echo '${{ github.event_name }}'
