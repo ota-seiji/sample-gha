@@ -27,5 +27,11 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.pull_request.auto_merge != null
         run: echo auto merge だよ
 
+      - name: check deploy
+        if: |
+          github.event_name == 'push' ||
+          (github.event_name == 'pull_request' && github.event.pull_request.auto_merge != null)
+        run: echo デプロイするよ
+
       - name: echo github
         run: echo '${{ toJSON(github) }}'
