@@ -1,6 +1,17 @@
 name: test
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "README.md"
+      - "./github/workflows/test.yml"
+  pull_request:
+    types: [closed]
+    paths:
+      - "README.md"
+      - "./github/workflows/test.yml"
 
 jobs:
   test:
@@ -17,4 +28,4 @@ jobs:
         run: echo '${{ github.event.pull_request.auto_merge }}'
 
       - name: echo github.event
-        run: echo '${{ github.event }}'
+        run: echo '${{ toJSON(github.event) }}'
