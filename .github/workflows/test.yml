@@ -8,7 +8,6 @@ on:
       - "README.md"
       - "./github/workflows/test.yml"
   pull_request:
-    types: [closed]
     paths:
       - "README.md"
       - "./github/workflows/test.yml"
