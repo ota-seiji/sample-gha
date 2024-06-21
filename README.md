@@ -1,3 +1,3 @@
 # sample-gha
 
-# fuga
+# hogehoge
