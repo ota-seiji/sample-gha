@@ -1,12 +1,6 @@
 name: test
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "README.md"
-      - ".github/workflows/test.yml"
   pull_request:
     types:
       - closed
@@ -20,8 +14,8 @@ jobs:
 
     steps:
       - name: check push
-        if: github.event_name == 'push'
-        run: echo プッシュだよ
+        if: github.event.pull_request.merged == true
+        run: echo 通常のマージだよ
 
       - name: check PR auto merge
         if: github.event_name == 'pull_request' && github.event.pull_request.auto_merge != null
@@ -29,7 +23,7 @@ jobs:
 
       - name: check deploy
         if: |
-          github.event_name == 'push' ||
+          github.event.pull_request.merged == true ||
           (github.event_name == 'pull_request' && github.event.pull_request.auto_merge != null)
         run: echo デプロイするよ
 
