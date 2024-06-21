@@ -2,6 +2,8 @@ name: test
 
 on:
   pull_request:
+    branches:
+      - main
     types:
       - closed
     paths:
@@ -13,18 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: check push
+      - name: check PR merge
         if: github.event.pull_request.merged == true
         run: echo 通常のマージだよ
 
       - name: check PR auto merge
-        if: github.event_name == 'pull_request' && github.event.pull_request.auto_merge != null
+        if: github.event.pull_request.auto_merge != null
         run: echo auto merge だよ
 
       - name: check deploy
         if: |
           github.event.pull_request.merged == true ||
-          (github.event_name == 'pull_request' && github.event.pull_request.auto_merge != null)
+          github.event.pull_request.auto_merge != null
         run: echo デプロイするよ
 
       - name: echo github
