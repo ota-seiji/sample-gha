@@ -13,20 +13,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
 
     steps:
-      - name: check PR merge
-        if: github.event.pull_request.merged == true
-        run: echo 通常のマージだよ
-
-      - name: check PR auto merge
-        if: github.event.pull_request.auto_merge != null
-        run: echo auto merge だよ
-
-      - name: check deploy
-        if: |
-          github.event.pull_request.merged == true ||
-          github.event.pull_request.auto_merge != null
+      - name: deploy
         run: echo デプロイするよ
 
       - name: echo github
